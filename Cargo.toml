@@ -1,0 +1,29 @@
+[package]
+name = "holder-near-subkeys"
+version = "0.2.0-alpha.1"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+borsh = "0.9"
+near-sdk = "4.1.1"
+hex = "0.4"
+base64 = "0.22"
+
+[dev-dependencies]
+near-sdk = { version = "4.1.1", features = ["unit-testing"] }
+
+[profile.release]
+codegen-units = 1
+debug = false
+lto = true
+opt-level = "z"
+panic = "abort"
+
+[profile.dev]
+debug = true
+
+[patch.crates-io]
+parity-secp256k1 = { git = "https://github.com/paritytech/rust-secp256k1", tag = "parity-secp256k1-v0.7.0" }
